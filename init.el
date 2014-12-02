@@ -18,7 +18,15 @@
 
 (setq el-get-sources 
   '(
-      el-get
+      (
+      :name el-get
+      :type git
+      :url "git://github.com/mswift42/dimitri/el-get"
+      :features el-get
+      
+      )
+      
+      
       
       
       (
@@ -26,24 +34,26 @@
       :type git  
       :url "git://github.com/mswift42/obsidian-theme"  
       :features obsidian-theme 
-      :compile "obsidian-theme.el"
       :after (progn
           (load-theme 'obsidian t)
         )
       
       )  
       
-      (:name evil-mode
+      (
+      :name evil-mode
       :type git  
       :url "git://github.com/emacsmirror/evil.git"  
       :features evil
-      :compile "evil.el")  
+    
+      )
       
-      (:name evil-leader
+      (
+      :name evil-leader
       :type git  
       :url "git://github.com/cofi/evil-leader.git"  
-      :features evil
-      :compile "evil.el")  
+      :features evil-leader
+      )
    )
 )
 
@@ -66,7 +76,6 @@
 (setq evil-leader/in-all-states 1)
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
-
 (setq evil-emacs-state-cursor '("red" box))
 (setq evil-normal-state-cursor '("green" box))
 (setq evil-visual-state-cursor '("orange" box))
@@ -74,6 +83,7 @@
 (setq evil-replace-state-cursor '("red" bar))
 (setq evil-operator-state-cursor '("red" hollow))
 (evil-mode 1)
+
 
 
 (custom-set-variables
