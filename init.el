@@ -32,16 +32,14 @@
       (
       :name obsidian-theme
       :type git  
-      :url "git://github.com/mswift42/obsidian-theme"  
+      :url "git://github.com/mswift42/obsidian-theme.git"  
       :features obsidian-theme 
-      :after (progn
-          (load-theme 'obsidian t)
-        )
-      
+      :after (load-theme 'obsidian t)
+         
       )  
       
       (
-      :name evil-mode
+      :name evil
       :type git  
       :url "git://github.com/emacsmirror/evil.git"  
       :features evil
@@ -50,9 +48,29 @@
       
       (
       :name evil-leader
+      :depends evil
       :type git  
       :url "git://github.com/cofi/evil-leader.git"  
       :features evil-leader
+      )
+      
+      (
+      :name elscreen
+      :type git  
+      :url "git://github.com/knu/elscreen.git" 
+      :depends evil      
+      :features elscreen
+      :after (elscreen-start)
+      )
+      
+      (
+      :name evil-tabs
+      :depends (evil elscreen)
+      :type git  
+      :url "git://github.com/krisajenkins/evil-tabs.git"  
+      :features evil-tabs
+      :after 
+          (global-evil-tabs-mode t)
       )
    )
 )
@@ -84,7 +102,8 @@
 (setq evil-operator-state-cursor '("red" hollow))
 (evil-mode 1)
 
-
+(define-key evil-normal-state-map (kbd "C-<tab>") 'elscreen-next)
+(define-key evil-normal-state-map (kbd "C-S-<tab>") 'elscreen-previous)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

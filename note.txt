@@ -19,5 +19,23 @@ auto complete
 file browser
 
 
+session
+
 
 tag?
+
+
+spell check
+http://www.emacswiki.org/FlySpell
+
+
+elisp
+ (define-key evil-normal-state-map (kbd "g p") 'evil-scroll-up)
+ 
+ 
+ 
+ 
+
+(evil-leader/set-key "e" 'evil-ace-jump-word-mode) ; ,e for Ace Jump (word)
+(evil-leader/set-key "l" 'evil-ace-jump-line-mode) ; ,l for Ace Jump (line)
+(evil-leader/set-key "x" 'evil-ace-jump-char-mode) ; ,x for Ace Jump (char)
