@@ -1,0 +1,23 @@
+a bunch of setting and list
+http://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
+
+search
+https://github.com/Wilfred/ag.el
+
+
+syntax
+ flycheck
+
+
+
+
+auto complete
+
+
+
+
+file browser
+
+
+
+tag?
