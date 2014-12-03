@@ -85,6 +85,16 @@
         )
       )
       
+      (
+      :name linum-relative
+      :type git
+      :url "git://github.com/coldnew/linum-relative.git"
+      :feaures linum-relative
+      :after  (progn
+          (require 'linum-relative)
+          (global-set-key (kbd "<f3>") 'linum-relative-toggle)
+        )
+      )
    )
 )
 
@@ -108,6 +118,10 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
+
+;;highlight parenthesis
+(show-paren-mode 1)
+(setq show-paren-delay 0)
 
 ;;soft tab
 (setq-default indent-tabs-mode nil)   ;; don't use tabs to indent

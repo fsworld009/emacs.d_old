@@ -1,9 +1,6 @@
 a bunch of setting and list
 http://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
 
-search
-https://github.com/Wilfred/ag.el
-
 
 buffer-move (swap buffer in diff windows)
 http://stackoverflow.com/questions/1774832/how-to-swap-the-buffers-in-2-windows-emacs
@@ -34,7 +31,8 @@ session
 
 search
 helm
-
+https://github.com/Wilfred/ag.el
+helm-ag
 
 tag?
 
