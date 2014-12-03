@@ -5,6 +5,13 @@ search
 https://github.com/Wilfred/ag.el
 
 
+buffer-move (swap buffer in diff windows)
+http://stackoverflow.com/questions/1774832/how-to-swap-the-buffers-in-2-windows-emacs
+
+ Goto the point of the most recent edit in the buffer.
+https://funwithemacs.wordpress.com/2013/04/11/shaving-time-with-goto-chg/
+http://www.emacswiki.org/GotoChg
+
 syntax
  flycheck
 
@@ -21,6 +28,12 @@ http://www.emacswiki.org/emacs/TabBarMode
 neotree
 
 session
+
+
+
+
+search
+helm
 
 
 tag?
@@ -76,3 +89,10 @@ http://www.emacswiki.org/emacs/WindowResize
           (global-evil-tabs-mode t)
       )
       
+      
+      
+      
+clipboard behavior
+
+
+;; C-x u  (`undo-tree-visualize')

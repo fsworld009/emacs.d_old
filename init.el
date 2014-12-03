@@ -46,6 +46,15 @@
     
       )
       
+      ;;add redo support
+      (
+      :name undo-tree
+      :type git
+      :url "git://github.com/emacsmirror/undo-tree.git"
+      :features undo-tree
+      :after (global-undo-tree-mode 1)
+      )
+      
       (
       :name evil-leader
       :depends evil
@@ -54,19 +63,18 @@
       :features evil-leader
       )
       
-
+     
       (
-      :name neotree
+      :name helm
       :type git
-      :url "git://github.com/jaypei/emacs-neotree.git"
-      :features neotree
-      :after (progn
-         (global-set-key [f8] 'neotree-toggle)
-         
-         )
+      :url "git://github.com/emacs-helm/helm.git"
+      :features helm
+      :after ( progn
+        (global-set-key (kbd "M-x") 'helm-M-x)
+        (global-set-key (kbd "<f8>") 'helm-find-files)
+        (global-set-key (kbd "<f7>") 'helm-buffers-list)
+        )
       )
-      
-      
       
    )
 )
@@ -74,7 +82,6 @@
 (setq packages (mapcar 'el-get-source-name el-get-sources) )
 
 (el-get 'sync packages)
-
 
 
 
@@ -122,7 +129,7 @@
 (global-set-key (kbd "C-<down>") 'windmove-down)
 (global-set-key (kbd "C-<left>") 'windmove-left)
 (global-set-key (kbd "C-<right>") 'windmove-right)
-(global-set-key (kbd "<f7>") 'ibuffer)
+
 
 (add-hook 'neotree-mode-hook
             (lambda ()
