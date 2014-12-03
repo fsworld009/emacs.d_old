@@ -41,7 +41,7 @@
       (
       :name evil
       :type git  
-      :url "git://github.com/emacsmirror/evil.git"  
+      :url "git://gitorious.org/evil/chrisdunders-evil.git"  
       :features evil
     
       )
@@ -50,7 +50,7 @@
       (
       :name undo-tree
       :type git
-      :url "git://github.com/emacsmirror/undo-tree.git"
+      :url "http://www.dr-qubit.org/git/undo-tree.git"
       :features undo-tree
       :after (global-undo-tree-mode 1)
       )
