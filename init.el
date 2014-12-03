@@ -54,25 +54,7 @@
       :features evil-leader
       )
       
-      (
-      :name elscreen
-      :type git  
-      :url "git://github.com/knu/elscreen.git" 
-      :depends evil      
-      :features elscreen
-      :after (elscreen-start)
-      )
-      
-      (
-      :name evil-tabs
-      :depends (evil elscreen)
-      :type git  
-      :url "git://github.com/krisajenkins/evil-tabs.git"  
-      :features evil-tabs
-      :after 
-          (global-evil-tabs-mode t)
-      )
-      
+
       (
       :name neotree
       :type git
@@ -83,6 +65,7 @@
          
          )
       )
+      
       
       
    )
@@ -98,6 +81,22 @@
 ;;Don't use backup files
 (setq make-backup-files nil)
 
+;;default directory
+(setq inhibit-startup-message t)
+(setq default-directory "D:/Program/" )
+
+
+;;utf-8
+(prefer-coding-system 'utf-8)
+(set-language-environment 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+
+;;soft tab
+(setq-default indent-tabs-mode nil)   ;; don't use tabs to indent
+(setq-default tab-width 4)            ;; but maintain correct appearance
+
 ;;editor style
 (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-10" ))
 (setq-default line-spacing 1)
@@ -107,16 +106,24 @@
 (setq evil-leader/in-all-states 1)
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
+
+(evil-mode 1)
+
 (setq evil-emacs-state-cursor '("red" box))
 (setq evil-normal-state-cursor '("green" box))
 (setq evil-visual-state-cursor '("orange" box))
 (setq evil-insert-state-cursor '("red" bar))
 (setq evil-replace-state-cursor '("red" bar))
 (setq evil-operator-state-cursor '("red" hollow))
-(evil-mode 1)
 
-(define-key evil-normal-state-map (kbd "C-<tab>") 'elscreen-next)
-(define-key evil-normal-state-map (kbd "C-S-<tab>") 'elscreen-previous)
+
+;;Key bindings
+(define-key evil-normal-state-map (kbd "C-<up>") 'windmove-up)
+(define-key evil-normal-state-map (kbd "C-<down>") 'windmove-down)
+(define-key evil-normal-state-map (kbd "C-<left>") 'windmove-left)
+(define-key evil-normal-state-map (kbd "C-<right>") 'windmove-right)
+
+
 (add-hook 'neotree-mode-hook
             (lambda ()
               (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)

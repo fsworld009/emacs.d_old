@@ -50,3 +50,29 @@ elisp
 
 
 http://www.emacswiki.org/emacs/WindowResize
+
+
+
+
+
+
+      (
+      :name elscreen
+      :type git  
+      :url "git://github.com/knu/elscreen.git" 
+      :depends evil      
+      :features elscreen
+      :after (elscreen-start)
+      )
+      
+      
+      (
+      :name evil-tabs
+      :depends (evil elscreen)
+      :type git  
+      :url "git://github.com/krisajenkins/evil-tabs.git"  
+      :features evil-tabs
+      :after 
+          (global-evil-tabs-mode t)
+      )
+      
