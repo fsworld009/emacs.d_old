@@ -43,7 +43,14 @@
       :type git  
       :url "git://gitorious.org/evil/chrisdunders-evil.git"  
       :features evil
-    
+      :after (progn
+      (setq evil-emacs-state-cursor '("red" box))
+            (setq evil-normal-state-cursor '("green" box))
+            (setq evil-visual-state-cursor '("orange" box))
+            (setq evil-insert-state-cursor '("red" bar))
+            (setq evil-replace-state-cursor '("red" bar))
+            (setq evil-operator-state-cursor '("red" hollow))
+         )
       )
       
       ;;add redo support
@@ -62,6 +69,8 @@
       :url "git://github.com/cofi/evil-leader.git"  
       :features evil-leader
       )
+      
+      
       
      
       (
@@ -116,12 +125,7 @@
 
 (evil-mode 1)
 
-(setq evil-emacs-state-cursor '("red" box))
-(setq evil-normal-state-cursor '("green" box))
-(setq evil-visual-state-cursor '("orange" box))
-(setq evil-insert-state-cursor '("red" bar))
-(setq evil-replace-state-cursor '("red" bar))
-(setq evil-operator-state-cursor '("red" hollow))
+
 
 
 ;;Key bindings
