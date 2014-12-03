@@ -17,12 +17,18 @@ auto complete
 
 
 file browser
-
+http://www.emacswiki.org/emacs/TabBarMode
+neotree
 
 session
 
 
 tag?
+
+
+
+comment
+https://github.com/redguardtoo/evil-nerd-commenter
 
 
 spell check
@@ -33,9 +39,14 @@ elisp
  (define-key evil-normal-state-map (kbd "g p") 'evil-scroll-up)
  
  
- 
+ https://github.com/syohex/emacs-helm-ag
+ https://github.com/Wilfred/ag.el
  
 
 (evil-leader/set-key "e" 'evil-ace-jump-word-mode) ; ,e for Ace Jump (word)
 (evil-leader/set-key "l" 'evil-ace-jump-line-mode) ; ,l for Ace Jump (line)
 (evil-leader/set-key "x" 'evil-ace-jump-char-mode) ; ,x for Ace Jump (char)
+
+
+
+http://www.emacswiki.org/emacs/WindowResize

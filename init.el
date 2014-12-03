@@ -72,6 +72,19 @@
       :after 
           (global-evil-tabs-mode t)
       )
+      
+      (
+      :name neotree
+      :type git
+      :url "git://github.com/jaypei/emacs-neotree.git"
+      :features neotree
+      :after (progn
+         (global-set-key [f8] 'neotree-toggle)
+         
+         )
+      )
+      
+      
    )
 )
 
@@ -104,6 +117,11 @@
 
 (define-key evil-normal-state-map (kbd "C-<tab>") 'elscreen-next)
 (define-key evil-normal-state-map (kbd "C-S-<tab>") 'elscreen-previous)
+(add-hook 'neotree-mode-hook
+            (lambda ()
+              (define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
+            )
+)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
