@@ -118,11 +118,11 @@
 
 
 ;;Key bindings
-(define-key evil-normal-state-map (kbd "C-<up>") 'windmove-up)
-(define-key evil-normal-state-map (kbd "C-<down>") 'windmove-down)
-(define-key evil-normal-state-map (kbd "C-<left>") 'windmove-left)
-(define-key evil-normal-state-map (kbd "C-<right>") 'windmove-right)
-
+(global-set-key (kbd "C-<up>") 'windmove-up)
+(global-set-key (kbd "C-<down>") 'windmove-down)
+(global-set-key (kbd "C-<left>") 'windmove-left)
+(global-set-key (kbd "C-<right>") 'windmove-right)
+(global-set-key (kbd "<f7>") 'ibuffer)
 
 (add-hook 'neotree-mode-hook
             (lambda ()
