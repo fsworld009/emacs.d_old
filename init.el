@@ -152,6 +152,23 @@
       :features discover-my-major
       :after (global-set-key (kbd "<f1>") 'discover-my-major)
       )
+      
+      (
+      :name evil-nerd-commenter
+      :type git
+      :depends evil-leader
+      :url "git://github.com/redguardtoo/evil-nerd-commenter.git"
+      :features evil-nerd-commenter
+      )
+      
+      (
+      :name evil-matchit
+      :type git
+      :depends evil
+      :url "git://github.com/redguardtoo/evil-matchit"
+      :features evil-matchit
+      :after (global-evil-matchit-mode 1)
+      )
    )
 )
 
@@ -202,6 +219,11 @@
 (evil-leader/set-key ",l" 'evil-ace-jump-line-mode)
 (evil-leader/set-key ",c" 'evil-ace-jump-char-mode)
 (evil-leader/set-key "u" 'undo-tree-visualize)
+(evil-leader/set-key "cc" 'evilnc-comment-or-uncomment-lines)
+(evil-leader/set-key "cl" 'evilnc-comment-or-uncomment-to-the-line)
+(evil-leader/set-key "cp" 'evilnc-comment-or-uncomment-paragraphs)
+(evil-leader/set-key "cy" 'evilnc-copy-and-comment-lines)
+(evil-leader/set-key "cr" 'comment-or-uncomment-region)
 
 
 

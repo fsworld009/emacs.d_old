@@ -98,8 +98,12 @@ clipboard behavior
 ;; C-x u  (`undo-tree-visualize')
 
 https://github.com/timcharper/evil-surround
-evil ace jump
+
 web-mode
 js2-mode
 magit
-(vertical line display)
+
+rainbow parenthesis
+highlight html match tags
+
+tab issues
