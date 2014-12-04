@@ -34,6 +34,7 @@ search
 helm
 https://github.com/Wilfred/ag.el
 helm-ag
+imenu
 
 tag?
 

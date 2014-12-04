@@ -131,9 +131,26 @@
       (
       :name ace-jump-mode
       :type git
-      :url "git://github.com/winterTTr/ace-jump-mode"
+      :url "git://github.com/winterTTr/ace-jump-mode.git"
       :features ace-jump-mode
-      :after (setq ace-jump-word-mode-use-query-char nil)
+      :after (setq ace-jump-word-mode-use-query-char nil) ;;do not ask for any input in ace-jump-word mode
+      )
+      
+      ;;required for discover-my-major
+      (
+      :name makey
+      :type git
+      :url "git://github.com/mickeynp/makey.git"
+      :features makey
+      )
+      
+      (
+      :name discover-my-major
+      :type git
+      :url "git://github.com/steckerhalter/discover-my-major.git"
+      :depends makey
+      :features discover-my-major
+      :after (global-set-key (kbd "<f1>") 'discover-my-major)
       )
    )
 )
@@ -178,12 +195,15 @@
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
 
+(evil-mode 1)
 
+;;evil-leader bindings
 (evil-leader/set-key ",w" 'evil-ace-jump-word-mode)
 (evil-leader/set-key ",l" 'evil-ace-jump-line-mode)
 (evil-leader/set-key ",c" 'evil-ace-jump-char-mode)
+(evil-leader/set-key "u" 'undo-tree-visualize)
 
-(evil-mode 1)
+
 
 ;; esc quits
 (defun minibuffer-keyboard-quit ()
@@ -208,7 +228,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  '(initial-frame-alist (quote ((fullscreen . maximized))))) ;; start maximized
 
 
-;;Key bindings
+;;global key bindings
 (global-set-key (kbd "C-<up>") 'windmove-up)
 (global-set-key (kbd "C-<down>") 'windmove-down)
 (global-set-key (kbd "C-<left>") 'windmove-left)
