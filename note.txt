@@ -17,7 +17,7 @@ syntax
 
 auto complete
 
-
+https://github.com/smihica/emmet-mode
 
 
 file browser
@@ -25,7 +25,8 @@ http://www.emacswiki.org/emacs/TabBarMode
 neotree
 
 session
-
+integrate with bookmark?
+bookmark+
 
 
 
@@ -94,3 +95,10 @@ clipboard behavior
 
 
 ;; C-x u  (`undo-tree-visualize')
+
+https://github.com/timcharper/evil-surround
+evil ace jump
+web-mode
+js2-mode
+magit
+(vertical line display)

@@ -95,6 +95,46 @@
           (global-set-key (kbd "<f3>") 'linum-relative-toggle)
         )
       )
+      
+      (
+      :name powerline
+      :type git
+      :url "git://github.com/milkypostman/powerline.git"
+      :features powerline
+
+      )
+      
+      (
+      :name powerline-evil
+      :type git
+      :url "git://github.com/raugturi/powerline-evil.git"
+      :depends (evil powerline)
+      :features powerline-evil
+      :after (progn
+            
+            (powerline-evil-vim-color-theme)
+            (display-time-mode t)
+        )
+      )
+      
+      (
+      :name indent-guide
+      :type git
+      :url "git://github.com/zk-phi/indent-guide.git"
+      :features indent-guide
+      :after (progn
+            (indent-guide-global-mode)
+            (setq indent-guide-recursive t)
+         )
+      )
+      
+      (
+      :name ace-jump-mode
+      :type git
+      :url "git://github.com/winterTTr/ace-jump-mode"
+      :features ace-jump-mode
+      :after (setq ace-jump-word-mode-use-query-char nil)
+      )
    )
 )
 
@@ -106,6 +146,7 @@
 
 ;;Don't use backup files
 (setq make-backup-files nil)
+
 
 ;;default directory
 (setq inhibit-startup-message t)
@@ -137,9 +178,34 @@
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
 
+
+(evil-leader/set-key ",w" 'evil-ace-jump-word-mode)
+(evil-leader/set-key ",l" 'evil-ace-jump-line-mode)
+(evil-leader/set-key ",c" 'evil-ace-jump-char-mode)
+
 (evil-mode 1)
 
+;; esc quits
+(defun minibuffer-keyboard-quit ()
+  "Abort recursive edit.
+In Delete Selection mode, if the mark is active, just deactivate it;
+then it takes a second \\[keyboard-quit] to abort the minibuffer."
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark  t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+(global-set-key [escape] 'evil-exit-emacs-state)
 
+(custom-set-variables
+ '(initial-frame-alist (quote ((fullscreen . maximized))))) ;; start maximized
 
 
 ;;Key bindings
