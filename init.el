@@ -258,7 +258,7 @@
 (evil-leader/set-key "sc" 'evil-surround-change)
 (evil-leader/set-key "sd" 'evil-surround-delete)
 (evil-leader/set-key "ss" (lambda () (interactive) (call-interactively 'evil-surround-region))) ;;need improvement
-
+(evil-leader/set-key "f" 'yafolding-discover)
 
 
 (global-set-key (kbd "<f6>") (lambda () (interactive) (evil-surround-region "i" "w" nil (read-char)))) 

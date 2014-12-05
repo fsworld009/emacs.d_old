@@ -109,3 +109,18 @@ highlight html match tags
 tab issues
 
 emmet
+
+
+
+https://github.com/zenozeng/yafolding.el
+(global-set-key (kbd "s-d y") 'yafolding-discover)
+
+ Hook into prog-mode-hook
+
+
+          
+          
+folding
+(add-hook 'prog-mode-hook
+          (lambda () (yafolding-mode)))
+ http://stackoverflow.com/questions/2399612/why-is-there-no-code-folding-in-emacs
