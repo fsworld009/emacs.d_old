@@ -82,6 +82,7 @@
         (global-set-key (kbd "M-x") 'helm-M-x)
         (global-set-key (kbd "<f8>") 'helm-find-files)
         (global-set-key (kbd "<f7>") 'helm-buffers-list)
+        (global-set-key (kbd "<f7>") 'helm-imenu)
         )
       )
       
@@ -165,9 +166,39 @@
       :name evil-matchit
       :type git
       :depends evil
-      :url "git://github.com/redguardtoo/evil-matchit"
+      :url "git://github.com/redguardtoo/evil-matchit.git"
       :features evil-matchit
       :after (global-evil-matchit-mode 1)
+      )
+      
+      (
+      :name evil-surround
+      :type git
+      :depends evil
+      :url "git://github.com/timcharper/evil-surround.git"
+      :features evil-surround
+      :after (global-evil-surround-mode 1)
+      )
+      
+      (
+      :name js2-mode
+      :type git
+      :url "git://github.com/mooz/js2-mode.git"
+      :features js2-mode
+      :after (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+      )
+
+      (
+      :name web-mode
+      :type git
+      :url "git://github.com/fxbois/web-mode.git"
+      :features web-mode
+      :after  (progn
+          (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.xml\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
+        )
       )
    )
 )
@@ -224,8 +255,13 @@
 (evil-leader/set-key "cp" 'evilnc-comment-or-uncomment-paragraphs)
 (evil-leader/set-key "cy" 'evilnc-copy-and-comment-lines)
 (evil-leader/set-key "cr" 'comment-or-uncomment-region)
+(evil-leader/set-key "sc" 'evil-surround-change)
+(evil-leader/set-key "sd" 'evil-surround-delete)
+(evil-leader/set-key "ss" (lambda () (interactive) (call-interactively 'evil-surround-region))) ;;need improvement
 
 
+
+(global-set-key (kbd "<f6>") (lambda () (interactive) (evil-surround-region "i" "w" nil (read-char)))) 
 
 ;; esc quits
 (defun minibuffer-keyboard-quit ()

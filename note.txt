@@ -91,7 +91,7 @@ http://www.emacswiki.org/emacs/WindowResize
       
       
       
-      
+(evil-leader/set-key-for-mode 'emacs-lisp-mode "b" 'byte-compile-file)      
 clipboard behavior
 
 
@@ -107,3 +107,5 @@ rainbow parenthesis
 highlight html match tags
 
 tab issues
+
+emmet
