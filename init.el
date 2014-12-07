@@ -27,30 +27,23 @@
       )
       
       
-      
-      
-      (
-      :name obsidian-theme
+            (
+      :name smyx-theme
       :type git  
-      :url "git://github.com/mswift42/obsidian-theme.git"  
-      :features obsidian-theme 
-      :after (load-theme 'obsidian t)
+      :url "https://github.com/tacit7/smyx.git"  
+      :features smyx-theme
+      :after (load-theme 'smyx t)
          
       )  
+      
+
       
       (
       :name evil
       :type git  
       :url "git://gitorious.org/evil/chrisdunders-evil.git"  
       :features evil
-      :after (progn
-      (setq evil-emacs-state-cursor '("red" box))
-            (setq evil-normal-state-cursor '("green" box))
-            (setq evil-visual-state-cursor '("orange" box))
-            (setq evil-insert-state-cursor '("red" bar))
-            (setq evil-replace-state-cursor '("red" bar))
-            (setq evil-operator-state-cursor '("red" hollow))
-         )
+
       )
       
       ;;add redo support
@@ -82,7 +75,7 @@
         (global-set-key (kbd "M-x") 'helm-M-x)
         (global-set-key (kbd "<f8>") 'helm-find-files)
         (global-set-key (kbd "<f7>") 'helm-buffers-list)
-        (global-set-key (kbd "<f7>") 'helm-imenu)
+        (global-set-key (kbd "<f9>") 'helm-imenu)
         )
       )
       
@@ -187,7 +180,7 @@
       :features js2-mode
       :after (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
       )
-
+      
       (
       :name web-mode
       :type git
@@ -195,11 +188,15 @@
       :features web-mode
       :after  (progn
           (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.htm\\'" . web-mode))
           (add-to-list 'auto-mode-alist '("\\.xml\\'" . web-mode))
           (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
           (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
+          (set-face-attribute 'web-mode-html-tag-face nil :foreground "#96D9F1")
         )
       )
+
+      
    )
 )
 
@@ -207,7 +204,8 @@
 
 (el-get 'sync packages)
 
-
+;;Emacs shell
+(ansi-color-for-comint-mode-on)
 
 ;;Don't use backup files
 (setq make-backup-files nil)

@@ -89,7 +89,88 @@ http://www.emacswiki.org/emacs/WindowResize
           (global-evil-tabs-mode t)
       )
       
+      (
+      :name web-mode
+      :type git
+      :url "git://github.com/fxbois/web-mode.git"
+      :features web-mode
+      :after  (progn
+          (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.htm\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.xml\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
+        )
+      )
       
+      ;;required for xah-html-mode
+      (
+      :name xfrp_find_replace_pairs
+      :type git
+      :url "git://github.com/xahlee/xfrp_find_replace_pairs.el.git"
+      :features xfrp_find_replace_pairs
+      )
+      
+      ;;required for xah-html-mode
+      (
+      :name xeu_elisp_util
+      :type git
+      :url "git://github.com/xahlee/xeu_elisp_util.el.git"
+      :features xeu_elisp_util
+      )
+      
+      ;;required for xah-html-mode
+      (
+      :name htmlize
+      :type git
+      :url "git://github.com/emacsmirror/htmlize.git"
+      :features htmlize
+      )
+      
+      (
+      :name xah-html-mode
+      :type git
+      :url "git://github.com/xahlee/xah-html-mode.el.git"
+      :features xah-html-mode
+      :after (progn
+            (add-to-list 'auto-mode-alist '("\\.html\\'" . xah-html-mode))
+            (add-to-list 'auto-mode-alist '("\\.htm\\'" . xah-html-mode))
+            (add-to-list 'auto-mode-alist '("\\.css\\'" . xah-html-mode))
+          )
+      )
+      
+            (
+      :name obsidian-theme
+      :type git  
+      :url "git://github.com/mswift42/obsidian-theme.git"  
+      :features obsidian-theme 
+      :after (load-theme 'obsidian t)
+         
+      )  
+      
+      (
+      :name color-theme-sons-of-obsidian
+      :type git  
+      :url "git://github.com/fsworld009/color-theme-sons-of-obsidian.el.git"  
+      :features color-theme-sons-of-obsidian
+      :after (load-theme 'color-theme-sons-of-obsidian t)
+         
+      )  
+      
+      
+      (
+      :name web-mode
+      :type git
+      :url "git://github.com/fxbois/web-mode.git"
+      :features web-mode
+      :after  (progn
+          (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.htm\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.xml\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
+        )
+      )
       
 (evil-leader/set-key-for-mode 'emacs-lisp-mode "b" 'byte-compile-file)      
 clipboard behavior
@@ -124,3 +205,21 @@ folding
 (add-hook 'prog-mode-hook
           (lambda () (yafolding-mode)))
  http://stackoverflow.com/questions/2399612/why-is-there-no-code-folding-in-emacs
+ 
+ 
+ 
+ 
+ https://github.com/fgallina/multi-web-mode
+ 
+ 
+ 
+ 
+
+      :after (progn
+      (setq evil-emacs-state-cursor '("red" box))
+            (setq evil-normal-state-cursor '("green" box))
+            (setq evil-visual-state-cursor '("orange" box))
+            (setq evil-insert-state-cursor '("red" bar))
+            (setq evil-replace-state-cursor '("red" bar))
+            (setq evil-operator-state-cursor '("red" hollow))
+         )
