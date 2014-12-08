@@ -172,6 +172,14 @@ http://www.emacswiki.org/emacs/WindowResize
         )
       )
       
+            (
+      :name js2-mode
+      :type git
+      :url "git://github.com/mooz/js2-mode.git"
+      :features js2-mode
+      :after (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+      )
+      
 (evil-leader/set-key-for-mode 'emacs-lisp-mode "b" 'byte-compile-file)      
 clipboard behavior
 
@@ -223,3 +231,9 @@ folding
             (setq evil-replace-state-cursor '("red" bar))
             (setq evil-operator-state-cursor '("red" hollow))
          )
+         
+         
+         
+auto-complete
+tern+jsctags
+(Tagbar)

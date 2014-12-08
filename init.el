@@ -173,13 +173,7 @@
       :after (global-evil-surround-mode 1)
       )
       
-      (
-      :name js2-mode
-      :type git
-      :url "git://github.com/mooz/js2-mode.git"
-      :features js2-mode
-      :after (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-      )
+
       
       (
       :name web-mode
@@ -192,9 +186,26 @@
           (add-to-list 'auto-mode-alist '("\\.xml\\'" . web-mode))
           (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
           (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
           (set-face-attribute 'web-mode-html-tag-face nil :foreground "#96D9F1")
         )
       )
+      
+      (
+      :name popup
+      :type git
+      :url "git://github.com/auto-complete/popup-el.git"
+      :features popup
+
+      )      
+      
+      (
+      :name auto-complete
+      :type git
+      :depends popup
+      :url "git://github.com/auto-complete/auto-complete.git"
+      :features auto-complete
+      )      
 
       
    )
@@ -203,6 +214,14 @@
 (setq packages (mapcar 'el-get-source-name el-get-sources) )
 
 (el-get 'sync packages)
+
+;; dirty fix for having AC everywhere
+(define-globalized-minor-mode real-global-auto-complete-mode
+  auto-complete-mode (lambda ()
+                       (if (not (minibufferp (current-buffer)))
+                         (auto-complete-mode 1))
+                       ))
+(real-global-auto-complete-mode t)
 
 ;;Emacs shell
 (ansi-color-for-comint-mode-on)
