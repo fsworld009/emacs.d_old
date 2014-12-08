@@ -1,6 +1,14 @@
+;;debug
+(setq debug-on-error t)
+
 (add-to-list 'load-path "~/.emacs.d/el-get")
 
 (add-to-list 'exec-path "C:/Program Files (x86)/git/bin/")
+(add-to-list 'exec-path "C:/node/")
+
+;;set the folder where node.js lookup for modules
+(setenv "NODE_PATH" "C:/node/node_modules")
+
 
 
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
@@ -13,6 +21,19 @@
     (eval-print-last-sexp)))
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+
+;;With emacs 24.4+, ad-advised-definition-p function has been removed. You can add it back to fix the problem:
+(defun ad-advised-definition-p (definition)
+  "Return non-nil if DEFINITION was generated from advice information."
+  (if (or (ad-lambda-p definition)
+	  (macrop definition)
+	  (ad-compiled-p definition))
+      (let ((docstring (ad-docstring definition)))
+	(and (stringp docstring)
+	     (get-text-property 0 'dynamic-docstring-function docstring)))))
+
+
+
 
 (package-initialize)
 
@@ -205,6 +226,36 @@
       :depends popup
       :url "git://github.com/auto-complete/auto-complete.git"
       :features auto-complete
+      ) 
+
+      (
+      :name tern
+      :type github
+      :pkgname "marijnh/tern"
+      :depends (web-mode auto-complete)
+      :load-path ("emacs")
+      :features (tern tern-auto-complete)
+      :after (progn
+            (tern-ac-setup)
+            (add-hook 'web-mode-hook (lambda () (tern-mode t)))
+            (setq tern-command '("tern" "--no-port-file" "--persistent"))
+          )
+    
+      ) 
+
+      
+      
+      (
+      :name sr-speedbar
+      :type git
+      :depends popup
+      :url "git://github.com/emacsmirror/sr-speedbar.git"
+      :features sr-speedbar
+      :after (progn 
+          (global-set-key (kbd "<f2>") 'sr-speedbar-toggle)
+          (sr-speedbar-refresh-turn-on)
+        )
+          
       )      
 
       
@@ -222,6 +273,9 @@
                          (auto-complete-mode 1))
                        ))
 (real-global-auto-complete-mode t)
+
+
+
 
 ;;Emacs shell
 (ansi-color-for-comint-mode-on)

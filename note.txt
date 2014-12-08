@@ -237,3 +237,36 @@ folding
 auto-complete
 tern+jsctags
 (Tagbar)
+
+
+http://ternjs.net/doc/manual.html#emacs
+tern
+Auto-Complete
+
+If you want to use auto-complete.el for completion, append following codes:
+
+(eval-after-load 'tern
+   '(progn
+      (require 'tern-auto-complete)
+      (tern-ac-setup)))
+      
+
+(add-hook 'js-mode-hook (lambda () (tern-mode t)))
+
+
+
+refractor
+
+
+
+
+
+tern Q&A
+cannot find module 'xxxx'
+->set NODE_PATH
+
+open-network-stream: make client process failed: connection refused, :name, 127.0.0.1, :buffer, #<killed buffer>, :host, 127.0.0.1, :service, 54232, :nowait, nilInvalid face reference: helm-ff-symlink
+1.delete  .tern-port in workind directory (current cd )
+2.then add no-port option
+(setq tern-command '("tern" "--no-port-file" "--persistent"))
+
