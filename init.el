@@ -242,49 +242,44 @@
           (sr-speedbar-refresh-turn-on)
         )
           
-      )      
-      
-;;================================language specific modes===================================
-      
-      (
-      :name js2-mode
-      :type github
-      :pkgname "mooz/js2-mode"
-      :features js2-mode
       )
       
       (
-      :name web-mode
+      :name mmm-mode
       :type github
-      :pkgname "fxbois/web-mode"
-      :features web-mode
-      :after  (progn
-          (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-          (add-to-list 'auto-mode-alist '("\\.htm\\'" . web-mode))
-          (add-to-list 'auto-mode-alist '("\\.xml\\'" . web-mode))
-          (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
-          (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
-        )
+      :pkgname "purcell/mmm-mode"
+      :features mmm-mode
+      :after (progn
+                (setq mmm-global-mode 'maybe)
+                (mmm-add-mode-ext-class 'html-mode nil 'html-css)
+                (mmm-add-mode-ext-class 'html-mode nil 'html-js)
+            )
+          
       )
 
+   
+      
 ;;================================language specific modes===================================
+      
+
+
+;;================================language specific modes END===================================
    )
 )
-
-;;================================language specific modes settings===================================         
-;;these settings don't work under ':after' for some reason
-    ;;js2-mode
-    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-    (add-hook 'js2-mode-hook (lambda () (flycheck-mode t)))
-    (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
-            
-            
-;;================================language specific modes hooks===================================         
-
 
 (setq packages (mapcar 'el-get-source-name el-get-sources) )
 
 (el-get 'sync packages)
+
+;;================================minor mode settings===================================         
+;;these settings don't work under ':after' for some reason
+
+
+;;================================language specific modes hooks===================================         
+
+(add-hook 'js-mode-hook (lambda () (flycheck-mode t)))
+(add-hook 'js-mode-hook (lambda () (tern-mode t)))
+
 
 
 
