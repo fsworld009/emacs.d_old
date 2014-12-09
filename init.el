@@ -232,16 +232,56 @@
       ) 
       
       (
+      :name simple-httpd
+      )
+      (
+      :name htmlize
+      )
+      
+      
+      (
       :name sr-speedbar
       :type github
       :depends popup
       :pkgname "emacsmirror/sr-speedbar.git"
       :features sr-speedbar
+      :depends simple-httpd
       :after (progn 
           (global-set-key (kbd "<f2>") 'sr-speedbar-toggle)
           (sr-speedbar-refresh-turn-on)
         )
           
+      )
+      
+      (
+      :name impatient-mode
+      :type github
+      :depends (simple-httpd htmlize)
+      :pkgname "skeeto/impatient-mode"
+      :features impatient-mode
+      )
+      
+      (
+      :name rainbow-mode
+      :type http
+      :url "http://git.savannah.gnu.org/cgit/emacs/elpa.git/plain/packages/rainbow-mode/rainbow-mode.el"
+      :features rainbow-mode
+      :after (progn
+            (add-hook 'css-mode-hook 'rainbow-mode)
+            (add-to-list 'auto-mode-alist '("\\-theme.el$" . (lambda () (rainbow-mode) (emacs-lisp-mode))))
+        )
+      )
+      
+      (
+      :name es-lib
+      )
+      
+      (
+      :name edit-color-stamp
+      :type github
+      :pkgname "sabof/edit-color-stamp"
+      :features edit-color-stamp
+      :depends es-lib
       )
       
       (
@@ -353,7 +393,7 @@
 (evil-leader/set-key "sd" 'evil-surround-delete)
 (evil-leader/set-key "ss" (lambda () (interactive) (call-interactively 'evil-surround-region))) ;;need improvement
 (evil-leader/set-key "f" 'yafolding-discover)
-
+(evil-leader/set-key "ec" 'edit-color-stamp)
 
 (global-set-key (kbd "<f6>") (lambda () (interactive) (evil-surround-region "i" "w" nil (read-char)))) 
 
