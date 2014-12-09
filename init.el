@@ -249,21 +249,14 @@
       (
       :name js2-mode
       :type github
-      :pkgname "mooz/js2-mode.git"
+      :pkgname "mooz/js2-mode"
       :features js2-mode
-      :depends (tern flycheck)
-      :after (progn
-            (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-            
-            (add-hook 'js2-mode-hook (lambda () (flycheck-mode t)))
-            (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
-        )
       )
-
+      
       (
       :name web-mode
-      :type git
-      :url "git://github.com/fxbois/web-mode.git"
+      :type github
+      :pkgname "fxbois/web-mode"
       :features web-mode
       :after  (progn
           (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
@@ -271,18 +264,30 @@
           (add-to-list 'auto-mode-alist '("\\.xml\\'" . web-mode))
           (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
           (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
-          ;;(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
-          (set-face-attribute 'web-mode-html-tag-face nil :foreground "#96D9F1")
         )
       )
-      
+
+;;================================language specific modes===================================
    )
 )
 
+;;================================language specific modes settings===================================         
+;;these settings don't work under ':after' for some reason
+    ;;js2-mode
+    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+    (add-hook 'js2-mode-hook (lambda () (flycheck-mode t)))
+    (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
             
+            
+;;================================language specific modes hooks===================================         
+
+
 (setq packages (mapcar 'el-get-source-name el-get-sources) )
 
 (el-get 'sync packages)
+
+
+
 
 ;; dirty fix for having AC everywhere
 (define-globalized-minor-mode real-global-auto-complete-mode
