@@ -11,7 +11,7 @@ http://www.emacswiki.org/GotoChg
 
 syntax
  flycheck
-
+add-to-list 'flycheck-checkers 'go-gofmt
 
 
 
@@ -232,7 +232,8 @@ folding
             (setq evil-operator-state-cursor '("red" hollow))
          )
          
-         
+
+(real-global-auto-complete-mode t)
          
 auto-complete
 tern+jsctags
@@ -254,10 +255,18 @@ If you want to use auto-complete.el for completion, append following codes:
 (add-hook 'js-mode-hook (lambda () (tern-mode t)))
 
 
+;; dirty fix for having AC everywhere
+(define-globalized-minor-mode real-global-auto-complete-mode
+  auto-complete-mode (lambda ()
+                       (if (not (minibufferp (current-buffer)))
+                         (auto-complete-mode 1))
+                       ))
+
 
 refractor
 
-
+;;Don't use backup files
+(setq make-backup-files nil)
 
 
 
@@ -270,3 +279,6 @@ open-network-stream: make client process failed: connection refused, :name, 127.
 2.then add no-port option
 (setq tern-command '("tern" "--no-port-file" "--persistent"))
 
+Error running timer `ac-update-greedy': (wrong-type-argument stringp nil)
+Error running timer `ac-show-menu': (wrong-type-argument stringp nil)
+not sure what causes this but its code related

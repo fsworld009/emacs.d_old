@@ -194,24 +194,6 @@
       :after (global-evil-surround-mode 1)
       )
       
-
-      
-      (
-      :name web-mode
-      :type git
-      :url "git://github.com/fxbois/web-mode.git"
-      :features web-mode
-      :after  (progn
-          (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-          (add-to-list 'auto-mode-alist '("\\.htm\\'" . web-mode))
-          (add-to-list 'auto-mode-alist '("\\.xml\\'" . web-mode))
-          (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
-          (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
-          (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
-          (set-face-attribute 'web-mode-html-tag-face nil :foreground "#96D9F1")
-        )
-      )
-      
       (
       :name popup
       :type git
@@ -227,29 +209,33 @@
       :url "git://github.com/auto-complete/auto-complete.git"
       :features auto-complete
       ) 
-
+      
+      (
+      :name flycheck
+      :type github
+      :pkgname "flycheck/flycheck"
+      :depends (s dash cl-lib f pkg-info)
+      )       
+      
       (
       :name tern
       :type github
       :pkgname "marijnh/tern"
-      :depends (web-mode auto-complete)
+      :depends (auto-complete)
       :load-path ("emacs")
       :features (tern tern-auto-complete)
       :after (progn
             (tern-ac-setup)
-            (add-hook 'web-mode-hook (lambda () (tern-mode t)))
             (setq tern-command '("tern" "--no-port-file" "--persistent"))
           )
     
       ) 
-
-      
       
       (
       :name sr-speedbar
-      :type git
+      :type github
       :depends popup
-      :url "git://github.com/emacsmirror/sr-speedbar.git"
+      :pkgname "emacsmirror/sr-speedbar.git"
       :features sr-speedbar
       :after (progn 
           (global-set-key (kbd "<f2>") 'sr-speedbar-toggle)
@@ -257,11 +243,43 @@
         )
           
       )      
+      
+;;================================language specific modes===================================
+      
+      (
+      :name js2-mode
+      :type github
+      :pkgname "mooz/js2-mode.git"
+      :features js2-mode
+      :depends (tern flycheck)
+      :after (progn
+            (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+            
+            (add-hook 'js2-mode-hook (lambda () (flycheck-mode t)))
+            (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+        )
+      )
 
+      (
+      :name web-mode
+      :type git
+      :url "git://github.com/fxbois/web-mode.git"
+      :features web-mode
+      :after  (progn
+          (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.htm\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.xml\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+          (add-to-list 'auto-mode-alist '("\\.scss\\'" . web-mode))
+          ;;(add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
+          (set-face-attribute 'web-mode-html-tag-face nil :foreground "#96D9F1")
+        )
+      )
       
    )
 )
 
+            
 (setq packages (mapcar 'el-get-source-name el-get-sources) )
 
 (el-get 'sync packages)
@@ -276,13 +294,18 @@
 
 
 
-
+    
 ;;Emacs shell
 (ansi-color-for-comint-mode-on)
 
-;;Don't use backup files
-(setq make-backup-files nil)
 
+;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
+(custom-set-variables
+  '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
+
+;; create the autosave dir if necessary, since emacs won't.
+(make-directory "~/.emacs.d/autosaves/" t)
 
 ;;default directory
 (setq inhibit-startup-message t)
