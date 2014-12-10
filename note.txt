@@ -269,11 +269,15 @@ If you want to use auto-complete.el for completion, append following codes:
                        ))
 
 
-refractor
-
 ;;Don't use backup files
 (setq make-backup-files nil)
 
+
+;;for speedbar, doesn't work
+ (speedbar-add-supported-extension "\\.css")
+ (setq speedbar-use-imenu-flag nil)
+(setq speedbar-fetch-etags-command "ctags")
+(setq speedbar-fetch-etags-arguments '("-e" "-f" "-"))
 
 
 tern Q&A
@@ -288,3 +292,7 @@ open-network-stream: make client process failed: connection refused, :name, 127.
 Error running timer `ac-update-greedy': (wrong-type-argument stringp nil)
 Error running timer `ac-show-menu': (wrong-type-argument stringp nil)
 not sure what causes this but its code related
+
+
+
+

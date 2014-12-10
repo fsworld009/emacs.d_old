@@ -5,6 +5,7 @@
 
 (add-to-list 'exec-path "C:/Program Files (x86)/git/bin/")
 (add-to-list 'exec-path "C:/node/")
+(add-to-list 'exec-path "D:/emacs/bin/")
 
 ;;set the folder where node.js lookup for modules
 (setenv "NODE_PATH" "C:/node/node_modules")
@@ -249,6 +250,7 @@
       :after (progn 
           (global-set-key (kbd "<f2>") 'sr-speedbar-toggle)
           (sr-speedbar-refresh-turn-on)
+         
         )
           
       )
@@ -295,6 +297,11 @@
                 (mmm-add-mode-ext-class 'html-mode nil 'html-js)
             )
           
+      )
+      
+      (
+      :name golden-ratio
+      :after (golden-ratio-mode)
       )
 
    
