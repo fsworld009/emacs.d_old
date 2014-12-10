@@ -5,10 +5,12 @@
 
 (add-to-list 'exec-path "C:/Program Files (x86)/git/bin/")
 (add-to-list 'exec-path "C:/node/")
-(add-to-list 'exec-path "D:/emacs/bin/")
+(add-to-list 'exec-path "D:/emacs/config/ctags")
 
 ;;set the folder where node.js lookup for modules
 (setenv "NODE_PATH" "C:/node/node_modules")
+;;(setenv "CTAGS" "~/.emacs.d/")
+(setenv "PATH" (concat (getenv "PATH") ";D:/emacs/config/ctags"))
 
 
 
@@ -195,6 +197,22 @@
       :after (global-evil-surround-mode 1)
       )
       
+      
+      (
+      :name sr-speedbar
+      :type github
+      :depends popup
+      :pkgname "emacsmirror/sr-speedbar.git"
+      :features sr-speedbar
+      :depends simple-httpd
+      :after (progn
+          (global-set-key (kbd "<f2>") 'sr-speedbar-toggle)
+          
+
+          (sr-speedbar-refresh-turn-on)
+        )
+      )
+      
       (
       :name popup
       :type git
@@ -240,20 +258,7 @@
       )
       
       
-      (
-      :name sr-speedbar
-      :type github
-      :depends popup
-      :pkgname "emacsmirror/sr-speedbar.git"
-      :features sr-speedbar
-      :depends simple-httpd
-      :after (progn 
-          (global-set-key (kbd "<f2>") 'sr-speedbar-toggle)
-          (sr-speedbar-refresh-turn-on)
-         
-        )
-          
-      )
+
       
       (
       :name impatient-mode
@@ -304,7 +309,6 @@
       :after (golden-ratio-mode)
       )
 
-   
       
 ;;================================language specific modes===================================
       
@@ -340,8 +344,12 @@
 (real-global-auto-complete-mode t)
 
 
+          (speedbar-add-supported-extension ".css")
+          (setq speedbar-fetch-etags-command "ctags")
+          (setq speedbar-fetch-etags-arguments '("-e" "-f" "-"))
+          (add-to-list 'speedbar-fetch-etags-parse-list '("\\.css" . speedbar-parse-c-or-c++tag))
 
-    
+
 ;;Emacs shell
 (ansi-color-for-comint-mode-on)
 

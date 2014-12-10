@@ -274,10 +274,12 @@ If you want to use auto-complete.el for completion, append following codes:
 
 
 ;;for speedbar, doesn't work
- (speedbar-add-supported-extension "\\.css")
- (setq speedbar-use-imenu-flag nil)
+    
+ (speedbar-add-supported-extension ".css")
+
 (setq speedbar-fetch-etags-command "ctags")
 (setq speedbar-fetch-etags-arguments '("-e" "-f" "-"))
+(add-to-list 'speedbar-fetch-etags-parse-list '("\\.css" . speedbar-parse-c-or-c++tag)) ;;fix "Sorry, no support for a file of that extension"
 
 
 tern Q&A
@@ -296,3 +298,7 @@ not sure what causes this but its code related
 
 
 
+
+
+ctags
+ctags --list-languages
