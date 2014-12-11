@@ -308,6 +308,14 @@
       :name golden-ratio
       :after (golden-ratio-mode)
       )
+      
+      (
+      :name emmet-mode
+      :after (progn
+         (add-hook 'html-mode-hook 'emmet-mode)
+         (add-hook 'css-mode-hook 'emmet-mode)
+          )
+      )
 
       
 ;;================================language specific modes===================================

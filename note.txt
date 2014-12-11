@@ -302,3 +302,19 @@ not sure what causes this but its code related
 
 ctags
 ctags --list-languages
+
+=================================TODO===================================
+refine config files
+
+autocomplete + css keywords
+how to use bookmarks/sessions
+
+evil register not interfere clipboard
+https://stackoverflow.com/questions/17127009/how-to-disable-emacs-evil-selection-auto-copies-to-clipboard/23254728#23254728
+http://www.codejury.com/bypassing-the-clipboard-in-emacs-evil-mode/
+
+emacs shell encoding
+folding
+buffer-move (swap buffer in diff windows)
+flyspell
+org-mode
