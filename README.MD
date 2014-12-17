@@ -1,0 +1,1 @@
+Old emacs config file, project abandoned. See my current configuration here https://github.com/fsworld009/emacs_home

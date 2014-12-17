@@ -318,3 +318,5 @@ folding
 buffer-move (swap buffer in diff windows)
 flyspell
 org-mode
+do not display global minor mode
+css indentline=2
